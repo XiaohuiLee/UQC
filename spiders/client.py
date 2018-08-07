@@ -35,15 +35,20 @@ get_params = "?market={}&limit={}"
 # loads_json(endpoint + depth_api + get_params.format("octeth", 5))
 
 #____________某个特定市场交易的获取情况______________
-
 trade_api = "/api/v2/trades"
 trade_url = endpoint + trade_api + get_params.format("octeth", 4)
 response = requests.get(trade_url)
 if response.status_code == 200:
-  # pass
-  print(response.content)
+  pass
+  print(json.dumps(response.json()))
 else:
   # pass
   print("sorry, something's wrong")
 
 
+#____________某个特定市场K线图的获取情况______________
+klines_api = "/api/v2/klines"
+klines_url = endpoint + klines_api + get_params.format("otbeth", 2) + '&period=1'
+response = requests.get(klines_url)
+j_klines = response.json()
+# print(json.dumps(j_klines))

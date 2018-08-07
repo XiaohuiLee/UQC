@@ -2,6 +2,12 @@
 import requests
 import pandas as pd
 import json
+# from Crypto import HMAC, SHA256
+import hashlib
+import hmac
+import base64
+
+
 
 
 def loads_json(url):
@@ -17,3 +23,16 @@ def loads_json(url):
     # pass
     print("sorry")
     print(response.status_code)
+
+
+
+
+def hmac_sha256(payload, api_secret):
+  # payload = bytes(payload).encode('utf-8')
+  # api_secret = bytes(api_secret).encode('utf-8')
+  payload = bytes(payload, 'utf-8')
+  api_secret = bytes(api_secret, 'utf-8')
+  signature = hmac.new(payload, api_secret,digestmod = hashlib.sha256).hexdigest()
+  print(signature)
+  return(signature)
+
