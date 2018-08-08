@@ -23,13 +23,3 @@ resp = sess.get(user_info_url)
 print(resp.content)
 
 
-
-
-#-------------------------------钱包账户信息---------------------------
-account_api = "/api/v2/account"
-account_payload = "GET|/api/v2/account|access_key={}&currency=btc".format(api_key)
-account_sign = hmac_sha256(account_payload, secret_key)
-account_access_params = "access_key={}&currency=btc&signature={}".format(api_key, account_sign)
-account_url = endpoint + account_api + account_access_params
-account_resp = sess.get(account_url)
-# print(account_resp)
